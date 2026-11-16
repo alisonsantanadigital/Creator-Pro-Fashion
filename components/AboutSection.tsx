@@ -5,19 +5,19 @@ export default function AboutSection() {
   return (
     <section id="sobre" className="bg-[#F4F4F6] text-[#070708] py-20 lg:py-28 border-b border-zinc-200">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Editorial Portrait */}
-          <div className="lg:col-span-5 flex flex-col">
-            <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[580px] bg-zinc-200 border border-zinc-300 overflow-hidden">
+          <div className="lg:col-span-5 flex flex-col items-start">
+            <div className="relative w-full max-w-[260px] sm:max-w-[290px] lg:max-w-[400px] aspect-[3/4] bg-zinc-200 border border-zinc-300 overflow-hidden">
               <EditorialImage
                 src={CREATOR_PROFILE.aboutImage}
                 alt={CREATOR_PROFILE.aboutImageAlt}
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover"
+                sizes="(max-width: 640px) 260px, (max-width: 1024px) 290px, 400px"
+                className="object-cover object-top"
                 fallbackTitle="Perfil Editorial · Marina Costa"
               />
             </div>
-            <p className="text-[11px] tracking-[0.08em] uppercase text-zinc-500 pt-3">
+            <p className="text-[11px] tracking-[0.08em] uppercase text-zinc-500 pt-3 max-w-[260px] sm:max-w-[290px] lg:max-w-[400px]">
               Perfil Demonstrativo · Direção Visual PRUMO CREATORS
             </p>
           </div>

@@ -12,13 +12,13 @@ export default function HeroSection() {
     <section id="hero" className="bg-white border-b border-zinc-200">
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 pt-10 pb-12 lg:pt-14 lg:pb-16">
         {/* Asymmetric Split-Screen Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
-          {/* Left Column: Editorial Typographic Hierarchy */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Left Column (Desktop) / Below Image (Mobile): Editorial Typographic Hierarchy */}
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col justify-between py-2 lg:py-6"
+            className="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-between py-2 lg:py-6"
           >
             <div>
               {/* Quiet unboxed agency attribution */}
@@ -110,24 +110,29 @@ export default function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Column: Large Editorial Portrait */}
+          {/* Right Column (Desktop) / Top Image (Mobile): Editorial Portrait */}
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.985 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col"
+            className="order-1 lg:order-2 lg:col-span-5 flex flex-col lg:items-end"
           >
-            <div className="relative w-full aspect-[3/4] lg:aspect-auto lg:h-full lg:min-h-[560px] bg-zinc-100 border border-zinc-200 overflow-hidden">
+            <div className="relative w-full aspect-[16/9] lg:max-w-[420px] lg:aspect-[3/4] bg-white lg:bg-zinc-100 lg:border lg:border-zinc-200 overflow-hidden">
               <EditorialImage
                 src={CREATOR_PROFILE.heroImage}
                 alt={CREATOR_PROFILE.heroImageAlt}
                 priority
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                className="object-cover object-top"
+                sizes="(max-width: 1024px) 100vw, 420px"
+                className="object-cover object-[50%_18%] lg:object-top"
                 fallbackTitle="Marina Costa"
               />
+              {/* Bottom fade into background on mobile */}
+              <div
+                aria-hidden="true"
+                className="lg:hidden pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white via-white/65 to-transparent"
+              />
             </div>
-            <div className="flex items-center justify-between pt-3 text-[11px] tracking-[0.08em] uppercase text-zinc-500">
+            <div className="hidden lg:flex w-full max-w-[420px] items-center justify-between pt-3 text-[11px] tracking-[0.08em] uppercase text-zinc-500">
               <span>Edição 01 · Moda Feminina Contemporânea</span>
               <span>São Paulo · Brasil</span>
             </div>

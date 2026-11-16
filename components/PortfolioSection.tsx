@@ -115,12 +115,24 @@ export default function PortfolioSection() {
                   onClick={() => setActiveCampaign(campaign)}
                   className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#070708] focus-visible:ring-offset-4"
                 >
-                  <div className="relative w-full aspect-[4/3] bg-zinc-100 border border-zinc-200 overflow-hidden mb-4">
+                  <div
+                    className={`relative w-full aspect-[16/9] bg-zinc-100 border border-zinc-200 overflow-hidden mb-4 ${
+                      isWideFeature
+                        ? 'max-w-[290px] sm:max-w-[440px] md:max-w-[680px]'
+                        : 'max-w-[290px] sm:max-w-[420px] md:max-w-[500px]'
+                    }`}
+                  >
                     <EditorialImage
                       src={campaign.image}
                       alt={campaign.imageAlt}
-                      sizes={isWideFeature ? '(max-width: 768px) 100vw, 58vw' : '(max-width: 768px) 100vw, 42vw'}
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      sizes={
+                        isWideFeature
+                          ? '(max-width: 640px) 290px, (max-width: 1024px) 440px, 680px'
+                          : '(max-width: 640px) 290px, (max-width: 1024px) 420px, 500px'
+                      }
+                      className={`object-cover ${
+                        campaign.category === 'Acessórios' ? 'object-center' : 'object-top'
+                      } transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
                       fallbackTitle={campaign.title}
                     />
                   </div>
@@ -168,14 +180,18 @@ export default function PortfolioSection() {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Lightbox Visual */}
-            <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-auto lg:min-h-[460px] bg-zinc-100">
-              <EditorialImage
-                src={activeCampaign.image}
-                alt={activeCampaign.imageAlt}
-                sizes="(max-width: 1024px) 100vw, 55vw"
-                className="object-cover"
-                fallbackTitle={activeCampaign.title}
-              />
+            <div className="lg:col-span-7 flex items-center justify-center bg-zinc-100 p-4 sm:p-6">
+              <div className="relative w-full max-w-[290px] sm:max-w-[520px] lg:max-w-[560px] aspect-[16/9] bg-zinc-200 border border-zinc-200 overflow-hidden">
+                <EditorialImage
+                  src={activeCampaign.image}
+                  alt={activeCampaign.imageAlt}
+                  sizes="(max-width: 640px) 290px, 560px"
+                  className={`object-cover ${
+                    activeCampaign.category === 'Acessórios' ? 'object-center' : 'object-top'
+                  }`}
+                  fallbackTitle={activeCampaign.title}
+                />
+              </div>
             </div>
 
             {/* Lightbox Editorial Credits */}
